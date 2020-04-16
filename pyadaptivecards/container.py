@@ -25,11 +25,13 @@ SOFTWARE.
 from .abstract_components import Serializable
 from .options import ImageSize
 
+
 class Container(Serializable):
    """Groups items together."""
    def __init__(self, items, selectAction=None,
                              style=None,
                              verticalContentAlignment=None,
+                             horizontalAlignment=None,
                              height=None,
                              separator=None,
                              spacing=None,
@@ -40,9 +42,9 @@ class Container(Serializable):
          items(list): List of items this container should contain.
          selectAction(OpenURL, Submit): Action to be invoked when container is selected.
          style(ContainerStyle): Style of this container.
-         verticalContentAlignment(VerticalContentAlignment): Specifies vertical alignment 
-            of the content. 
-         height(BlockElementHeight): Specifies the way the height of this container should 
+         verticalContentAlignment(VerticalContentAlignment): Specifies vertical alignment
+            of the content.
+         height(BlockElementHeight): Specifies the way the height of this container should
             be calculated (stretch or auto).
          separator(bool): Draw a separating line when set to true
          spacing(Spacing): Specify the spacing of this component
@@ -53,6 +55,7 @@ class Container(Serializable):
       self.selectAction = selectAction
       self.style = style
       self.verticalContentAlignment = verticalContentAlignment
+      self.horizontalAlignment = horizontalAlignment
       self.height = height
       self.separator = separator
       self.spacing = spacing
@@ -61,7 +64,8 @@ class Container(Serializable):
       super().__init__(serializable_properties=['items'],
                        simple_properties=[
                            'selectAction', 'style', 'verticalContentAlignment',
-                           'height', 'separator', 'spacing', 'id', 'type'
+                           'height', 'separator', 'spacing', 'id', 'type',
+                           'horizontalAlignment'
                        ])
 
 class ColumnSet(Serializable):
@@ -71,13 +75,14 @@ class ColumnSet(Serializable):
                       height=None,
                       separator=None,
                       spacing=None,
+                      horizontalAlignment=None,
                       id=None):
       """Create a new ColumnSet.
 
       Args:
          columns(list): List of Column elements.
          selectAction(OpenURL, Submit): Action to be invoked when container is selected.
-         height(BlockElementHeight): Specifies the way the height of this container should 
+         height(BlockElementHeight): Specifies the way the height of this container should
             be calculated (stretch or auto).
          separator(bool): Draw a separating line when set to true
          spacing(Spacing): Specify the spacing of this component
@@ -89,12 +94,13 @@ class ColumnSet(Serializable):
       self.height = height
       self.separator = separator
       self.spacing = spacing
+      self.horizontalAlignment = horizontalAlignment
       self.id = id
 
       super().__init__(serializable_properties=['columns'],
                        simple_properties=[
                         'selectAction', 'height', 'separator', 'spacing',
-                        'id', 'type'
+                        'id', 'type', 'horizontalAlignment'
                       ])
 
 class FactSet(Serializable):
@@ -107,7 +113,7 @@ class FactSet(Serializable):
 
       Args:
          facts(list): List of Fact Elements to be displayed.
-         height(BlockElementHeight): Specifies the way the height of this container should 
+         height(BlockElementHeight): Specifies the way the height of this container should
             be calculated (stretch or auto).
          separator(bool): Draw a separating line when set to true
          spacing(Spacing): Specify the spacing of this component
@@ -132,17 +138,17 @@ class ImageSet(Serializable):
                               spacing=None,
                               id=None):
       """Create a new ImageSet.
-      
+
       Args:
          images(list): List of Image objects to be displayed in a image set.
          imageSize(ImageSize): Size of the image.
-         height(BlockElementHeight): Specifies the way the height of this container should 
+         height(BlockElementHeight): Specifies the way the height of this container should
             be calculated (stretch or auto).
          separator(bool): Draw a separating line when set to true
          spacing(Spacing): Specify the spacing of this component
          id(str): The id of this component
       """
-      
+
       self.type = "ImageSet"
       self.images = images
       self.imageSize = imageSize

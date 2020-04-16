@@ -241,6 +241,7 @@ class Column(Serializable):
                        selectAction=None,
                        style=None,
                        verticalContentAlignment=None,
+                       horizontalAlignment=None,
                        width=None,
                        id=None):
         """Create a new column.
@@ -263,6 +264,7 @@ class Column(Serializable):
         check_type(selectAction, (OpenUrl, Submit), False, True)
         check_type(style, (str, ContainerStyle), False, True)
         check_type(verticalContentAlignment, VerticalContentAlignment, False, True)
+        check_type(horizontalAlignment, HorizontalAlignment, False, True)
         check_type(width, str, False, True)
         check_type(id, str, False, True)
 
@@ -273,6 +275,7 @@ class Column(Serializable):
         self.selectAction = selectAction
         self.style = style
         self.verticalContentAlignment = verticalContentAlignment
+        self.horizontalAlignment = horizontalAlignment
         self.width = width
         self.id = id
 
